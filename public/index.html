@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br" ng-app="alurapic">
+﻿<html lang="pt-br" ng-app="alurapic">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
@@ -8,10 +7,13 @@
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <script src="js/lib/angular.min.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/controllers/image-controller.js"></script>
     </head>
-    <body>
+    <body ng-controller="ImageController">
         <div class="container">
             <h1 class="text-center">Alurapic</h1>
+            <img src="{{image.url}}" alt="{{image.tittle}}" class="img-responsive center-block">
+
         </div> <!-- fim container -->        
     </body>
 </html>
