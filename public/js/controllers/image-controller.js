@@ -1,7 +1,11 @@
-angular.module('alurapic').controller('ImageController', function($scope){
+angular.module('alurapic').controller('ImageController', function($scope, $http){
 	
-	$scope.image = {
-		tittle : 'Leão',
-		url : '/images/leoes.jpg'
-	};
+	$scope.images = [];
+
+	$http.get('v1/fotos').success(function(result){
+		$scope.images = result;
+	}).error(function(error){
+			console.log(error);
+	});
+
 });
