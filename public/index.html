@@ -8,20 +8,16 @@
         <script src="js/lib/angular.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/controllers/image-controller.js"></script>
+        <script src="js/directives/directives.js"></script>
     </head>
     <body ng-controller="ImageController">
         <div class="container">
             <div class="jumbotron">
                 <h1 class="text-center">Alurapic</h1>
             </div>
-            <div ng-repeat="image in images" class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"> {{image.titulo}}</h3>
-                </div>
-                <div class="panel-body">
+            <my-panel ng-repeat="image in images" titulo="{{image.titulo}}">
                     <img src="{{image.url}}" alt="{{image.titulo}}" class="img-responsive center-block">        
-                </div>
-            </div> 
+            </my-panel> 
         </div> <!-- fim container -->        
     </body>
 </html>
