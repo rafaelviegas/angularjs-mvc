@@ -5,6 +5,7 @@
         <title>Alurapic</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/effects.css">
         <script src="js/lib/angular.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/controllers/image-controller.js"></script>
@@ -15,9 +16,19 @@
             <div class="jumbotron">
                 <h1 class="text-center">Alurapic</h1>
             </div>
-            <my-panel ng-repeat="image in images" titulo="{{image.titulo}}">
-                    <img src="{{image.url}}" alt="{{image.titulo}}" class="img-responsive center-block">        
-            </my-panel> 
+            <div class="row">
+                <div class="col-md-12">
+                    <form>
+                        <input ng-model="search" ng-model-options="{debounce:500}" type="text" class="form-control" placeholder="filtrar">
+                    </form>
+                </div>
+                <div class="row">
+                    <my-panel class="col-md-2 panel-fade" ng-repeat="image in images | filter: search" titulo="{{image.titulo}}">
+                        <img src="{{image.url}}" alt="{{image.titulo}}" class="img-responsive center-block">       
+                    </my-panel>                     
+                </div>
+            </div>
+
         </div> <!-- fim container -->        
     </body>
 </html>
