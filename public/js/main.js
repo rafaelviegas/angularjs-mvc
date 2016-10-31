@@ -13,5 +13,10 @@ angular.module('alurapic', ['myDirectives','ngRoute','ngAnimate'])
 		controller: 'ImageController'
 	});
 
+	$routeProvider.when('/images/edit/:imageId', {
+		templateUrl: 'partials/image/register.html',
+		controller: 'ImageController'
+	});
+
 	$routeProvider.otherwise({redirectTo:'/images'});
 });

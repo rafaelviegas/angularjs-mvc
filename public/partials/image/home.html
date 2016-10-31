@@ -1,6 +1,7 @@
 <div class="jumbotron">
     <h1 class="text-center">Alurapic</h1>
 </div>
+<p class="alert alert-info" ng-show="mensagem.length">{{mensagem}}</p>
 <div class="row">
     <div class="col-md-12">
         <form>
@@ -14,7 +15,9 @@
     </div>
 </div>
 <div class="row">
-        <my-panel class="col-md-2 panel-fade" ng-repeat="image in images | filter: search" titulo="{{image.titulo}}">
-            <my-image url="{{image.url}}" alt="{{image.titulo}}"></minha-foto>       
-        </my-panel>                     
+    <my-panel class="col-md-2 panel-fade" ng-repeat="image in images | filter: search" titulo="{{image.titulo}}">
+        <my-image url="{{image.url}}" alt="{{image.titulo}}"></my-image>
+        <a href="images/edit/{{image._id}}" class="btn btn-primary btn-block">Editar</a>
+        <button ng-click="remove(image)" class="btn btn-danger btn-block">Remover</button> 
+    </my-panel>                     
 </div>

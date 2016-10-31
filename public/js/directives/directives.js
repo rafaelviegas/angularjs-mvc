@@ -25,7 +25,7 @@ angular.module('myDirectives',[])
             url: '@'
         };
 
-        ddo.template = '<img class="img-responsive center-block" src="{{url}}" alt="{{titulo}}">';           
+        ddo.templateUrl = 'js/directives/my-image.html'           
         
         return ddo;
     });
