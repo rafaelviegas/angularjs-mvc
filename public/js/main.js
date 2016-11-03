@@ -18,5 +18,5 @@ angular.module('alurapic', ['myDirectives','ngRoute','ngAnimate'])
 		controller: 'ImageController'
 	});
 
-	$routeProvider.otherwise({redirectTo:'/images'});
+	 $routeProvider.otherwise({redirectTo:'/images'});
 });

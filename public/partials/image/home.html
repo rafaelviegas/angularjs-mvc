@@ -18,6 +18,6 @@
     <my-panel class="col-md-2 panel-fade" ng-repeat="image in images | filter: search" titulo="{{image.titulo}}">
         <my-image url="{{image.url}}" alt="{{image.titulo}}"></my-image>
         <a href="images/edit/{{image._id}}" class="btn btn-primary btn-block">Editar</a>
-        <button ng-click="remove(image)" class="btn btn-danger btn-block">Remover</button> 
+         <my-danger-button name="Remover" action="remove(image)"></my-danger-button>
     </my-panel>                     
 </div>

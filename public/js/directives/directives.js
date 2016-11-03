@@ -28,4 +28,18 @@ angular.module('myDirectives',[])
         ddo.templateUrl = 'js/directives/my-image.html'           
         
         return ddo;
-    });
+}).directive('myDangerButton', function(){
+    
+    var ddo = {};
+
+    ddo.restrict = "E";
+
+    ddo.scope = {
+        name: '@',
+        action: '&'
+    };
+
+    ddo.template = '<button ng-click="action(image)" class="btn btn-danger btn-block">{{name}}</button>';
+
+    return ddo;    
+});
