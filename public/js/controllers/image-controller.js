@@ -1,14 +1,12 @@
-angular.module('alurapic').controller('ImageController', function($scope, $http,resourceImage,$routeParams){
+angular.module('alurapic').controller('ImageController', function($scope, $http,resourceImage,registerImage,$routeParams){
     
     $scope.image = {};
     $scope.mensagem = '';
 
     if($routeParams.imageId){
-     $http.get('v1/fotos/'+ $routeParams.imageId)
-     .success(function(result){
-          $scope.image = result;
-     })
-     .error(function(error) {
+     resourceImage.get({imageId: $routeParams.imageId},function(result){
+         $scope.image = result;
+     },function(error) {
          console.log(error);
          $scope.mensagem = 'Não foi possivel obter foto';
      })
@@ -16,21 +14,13 @@ angular.module('alurapic').controller('ImageController', function($scope, $http,
  
     $scope.sub  = function(){
         if($scope.form.$valid){
-            if($scope.image._id){
-                  resourceImage.update({imageId : $scope.image._id}, $scope.image,function(result){
-                        $scope.mensagem = "foto alterada com sucesso";
-                  },function(error){
-                        $scope.mensagem = "não foi possivel alterar a foto";
-                  });
-            }else{
-                $http.post('v1/fotos', $scope.image)
-                .success(function(result){
-                    $scope.image = {};
-                    $scope.mensagem = "foto incluida com sucesso";
-                }).error(function(error){
-                    $scope.mensagem = "não foi possivel incluir a foto";
-                });
-            }
+            registerImage.register($scope.image)
+            .then(function(data){
+                $scope.mensagem = data.message;
+                if(data.insert)  $scope.image = {};
+            }).catch(function(data){
+                    $scope.mensagem = data.message;
+            }); 
         };
     };
 });
