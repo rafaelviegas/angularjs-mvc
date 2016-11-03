@@ -1,4 +1,4 @@
-angular.module('alurapic').controller('ImageController', function($scope, $http,$routeParams){
+angular.module('alurapic').controller('ImageController', function($scope, $http,resourceImage,$routeParams){
     
     $scope.image = {};
     $scope.mensagem = '';
@@ -17,13 +17,11 @@ angular.module('alurapic').controller('ImageController', function($scope, $http,
     $scope.sub  = function(){
         if($scope.form.$valid){
             if($scope.image._id){
-                  $http.put('v1/fotos/'+ $scope.image._id, $scope.image)
-
-                  .success(function(result){
-                     $scope.mensagem = "foto alterada com sucesso";
-                    }).error(function(error){
+                  resourceImage.update({imageId : $scope.image._id}, $scope.image,function(result){
+                        $scope.mensagem = "foto alterada com sucesso";
+                  },function(error){
                         $scope.mensagem = "não foi possivel alterar a foto";
-                    });
+                  });
             }else{
                 $http.post('v1/fotos', $scope.image)
                 .success(function(result){
