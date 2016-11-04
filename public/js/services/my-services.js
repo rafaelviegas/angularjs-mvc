@@ -7,13 +7,14 @@ angular.module('myServices',['ngResource'])
         }
         });
     })
-    .factory('registerImage',function(resourceImage,$q){
+    .factory('registerImage',function(resourceImage,$q,$rootScope){
         var service = {};
         service.register = function(image){
         
             return $q(function(resolve,reject){
                 if(image._id){
                     resourceImage.update({imageId:image._id},image,function(){
+                        $rootScope.$broadcast('imageRegistered');
                         resolve({
                            message: 'Imagem ' + image.titulo  + ' atualizada com sucesso!',
                            insert:false 
@@ -24,6 +25,7 @@ angular.module('myServices',['ngResource'])
                     });
                 }else{
                     resourceImage.save(image,function(){
+                        $rootScope.$broadcast('imageRegistered');
                         resolve({
                             message: 'Foto '+ image.titulo + ' incluída com sucesso!',
                             insert: true

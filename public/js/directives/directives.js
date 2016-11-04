@@ -42,4 +42,16 @@ angular.module('myDirectives',[])
     ddo.template = '<button ng-click="action(image)" class="btn btn-danger btn-block">{{name}}</button>';
 
     return ddo;    
+}).directive('myFocus', function(){
+    var ddo = {}
+
+    ddo.restrict = "A";
+
+    ddo.link = function(scope, element){
+      
+        scope.$on('imageRegistered', function(){
+            element[0].focus();
+        });
+    }
+    return ddo;
 });
